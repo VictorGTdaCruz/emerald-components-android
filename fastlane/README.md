@@ -16,16 +16,21 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## Android
+### android run_tests_pipeline
+```
+fastlane android run_tests_pipeline
+```
+Runs test pipeline
+### android local_properties
+```
+fastlane android local_properties
+```
+Creates local properties file
 ### android run_test
 ```
 fastlane android run_test
 ```
 Runs all the tests
-### android new_test
-```
-fastlane android new_test
-```
-
 
 ----
 

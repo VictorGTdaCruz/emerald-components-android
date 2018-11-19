@@ -19,8 +19,20 @@ platform :android do
   
 	desc "Runs test pipeline"
     lane :run_tests_pipeline do
+    	android_home
     	local_properties
         run_test
+    end
+
+    desc "Creates local properties file"
+    lane :android_home do 
+    	sh("export", "PATH=$PATH:/Users/<username>/Library/Android/sdk/tools")
+    	sh("export", "PATH=$PATH:/Users/<username>/Library/Android/sdk/platform-tools")
+    end
+
+    desc "Creates local properties file"
+    lane :local_properties do 
+    	sh("touch", "../local.properties")
     end
 
     desc "Runs all the tests"
@@ -28,11 +40,6 @@ platform :android do
         gradle(
             task: "test"
         )
-    end
-
-    desc "Creates local properties file"
-    lane :local_properties do 
-    	sh("touch", "../local.properties")
     end
 
 end
