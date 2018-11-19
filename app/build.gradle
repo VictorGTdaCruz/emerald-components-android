@@ -40,8 +40,3 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espresso_version"
 }
-
-import br.com.stone.emeraldcomponentsandroid.Task1
-task helloWorld(type: Task1) {
-
-}

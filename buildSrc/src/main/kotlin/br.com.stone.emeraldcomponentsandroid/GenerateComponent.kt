@@ -1,7 +1,14 @@
 package br.com.stone.emeraldcomponentsandroid
 
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.TypeSpec
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
+import java.nio.file.Paths
 
 open class Task1 : DefaultTask() {
 
@@ -13,7 +20,6 @@ open class Task1 : DefaultTask() {
 
     @TaskAction
     fun run() {
-        println("Creating component")
         val greeterClass = ClassName("", "Greeter")
         val file = FileSpec.builder("", "HelloWorld")
                 .addType(TypeSpec.classBuilder("Greeter")
@@ -28,11 +34,10 @@ open class Task1 : DefaultTask() {
                                 .build())
                         .build())
                 .addFunction(FunSpec.builder("main")
-                        .addParameter("args", String::class, VARARG)
+                        .addParameter("args", String::class, KModifier.VARARG)
                         .addStatement("%T(args[0]).greet()", greeterClass)
                         .build())
                 .build()
-
-        file.writeTo(System.out)
+        file.writeTo(Paths.get(System.getProperty("user.dir")))
     }
 }
