@@ -1,0 +1,6 @@
+language: android
+
+dist: trusty
+
+git:
+  depth: false
