@@ -1,4 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+import br.com.stone.emeraldcomponentsandroid.MakeComponent
 
 buildscript {
     ext {
@@ -45,7 +46,7 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-import br.com.stone.emeraldcomponentsandroid.*
-task makeComponent(type: Task1) {
-
+task makeComponent(type: MakeComponent) {
+    if (project.hasProperty('n'))
+        componentName = "$n"
 }

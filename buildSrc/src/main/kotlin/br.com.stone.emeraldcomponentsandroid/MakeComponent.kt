@@ -10,17 +10,21 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 import java.nio.file.Paths
 
-open class Task1 : DefaultTask() {
+open class MakeComponent : DefaultTask() {
+
+    lateinit var componentName: String
 
     init {
-        group = "com.kotlinexpertise"
-        description = "task1"
+        group = "br.com.stone"
+        description = "task to make components"
     }
 
 
     @TaskAction
     fun run() {
-        val greeterClass = ClassName("", "Greeter")
+        println("Creating component $componentName")
+
+        val greeterClass = ClassName("", componentName)
         val file = FileSpec.builder("", "HelloWorld")
                 .addType(TypeSpec.classBuilder("Greeter")
                         .primaryConstructor(FunSpec.constructorBuilder()
@@ -38,6 +42,7 @@ open class Task1 : DefaultTask() {
                         .addStatement("%T(args[0]).greet()", greeterClass)
                         .build())
                 .build()
+
         file.writeTo(Paths.get(System.getProperty("user.dir")))
     }
 }
