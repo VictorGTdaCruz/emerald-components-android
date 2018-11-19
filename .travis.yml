@@ -4,3 +4,7 @@ dist: trusty
 
 git:
   depth: false
+
+script:
+  - fastlane run_tests_pipeline
+
