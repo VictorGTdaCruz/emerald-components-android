@@ -4,6 +4,7 @@ import android.graphics.PorterDuff
 import android.graphics.drawable.GradientDrawable
 import android.support.v4.content.ContextCompat
 import br.com.stone.emeraldcomponents.R
+import br.com.stone.emeraldcomponents.extension.colorRes
 import br.com.stone.emeraldcomponents.extension.dimen
 import br.com.stone.emeraldcomponents.extension.show
 import kotlinx.android.synthetic.main.widget_emerald_label.view.*
@@ -18,7 +19,11 @@ enum class EmeraldLabelState : LabelStateHandler {
         override fun setProperties(label: EmeraldLabel, color: Int) {
             label.emeraldLabelText.run {
                 setTextColor(ContextCompat.getColor(context, R.color.emerald_white_1))
-                getLabelBackgroundDrawable(label)?.setColor(color)
+                getLabelBackgroundDrawable(label)?.apply {
+                    setColor(color)
+                    setStroke(context.dimen(R.dimen.label_border_width).toInt(),
+                            context.colorRes(android.R.color.transparent))
+                }
             }
         }
     },
@@ -26,7 +31,10 @@ enum class EmeraldLabelState : LabelStateHandler {
         override fun setProperties(label: EmeraldLabel, color: Int) {
             label.emeraldLabelText.run {
                 setTextColor(color)
-                getLabelBackgroundDrawable(label)?.setStroke(context.dimen(R.dimen.label_border_width).toInt(), color)
+                getLabelBackgroundDrawable(label)?.apply {
+                    setColor(context.colorRes(android.R.color.transparent))
+                    setStroke(context.dimen(R.dimen.label_border_width).toInt(), color)
+                }
             }
         }
     },
@@ -34,6 +42,11 @@ enum class EmeraldLabelState : LabelStateHandler {
         override fun setProperties(label: EmeraldLabel, color: Int) {
             label.run {
                 emeraldLabelText.setTextColor(color)
+                getLabelBackgroundDrawable(label)?.apply {
+                    setStroke(context.dimen(R.dimen.label_border_width).toInt(),
+                            context.colorRes(android.R.color.transparent))
+                    setColor(context.colorRes(android.R.color.transparent))
+                }
                 val drawable = ContextCompat.getDrawable(context, R.drawable.dot_shape)?.mutate()
                 drawable?.setColorFilter(color, PorterDuff.Mode.SRC_IN)
                 emeraldLabelImage.setImageDrawable(drawable)

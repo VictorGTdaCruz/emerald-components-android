@@ -15,7 +15,7 @@ def deployKey = System.env.PACKAGECLOUD_TOKEN != null ? System.env.PACKAGECLOUD_
 def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', '**/*$*', 'android/**/*.*', '**/*Function*', '**/*_impl*']
 def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
 def mainSrc = "$project.projectDir/src/main/kotlin"
-def version = '0.3.0'
+def version = '0.3.1'
 
 android {
     compileSdkVersion 27

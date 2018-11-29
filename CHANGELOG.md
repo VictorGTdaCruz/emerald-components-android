@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.3.1 - 2018-11-27
+- Fix label background and border colors when no other color is being set
+
 ## 0.3.0 - 2018-11-06
 - [Add emerald colors][issue-25]
 - New label component
