@@ -62,6 +62,10 @@ class EmeraldLabel : ConstraintLayout {
         size.setDimensions(emeraldLabelText)
     }
 
+    fun setCustomColor(state: LabelStateHandler, customColorId: Int) {
+        state.setProperties(this, ContextCompat.getColor(context, customColorId))
+    }
+
     fun setIcon(iconResource: Int) {
         val drawable = ContextCompat.getDrawable(context, iconResource)?.mutate()
         drawable?.setColorFilter(ContextCompat.getColor(context, type.color), PorterDuff.Mode.SRC_IN)

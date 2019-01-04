@@ -7,4 +7,20 @@
     <string name="text_only_labels">Somente Texto</string>
     <string name="icon_label">Texto + ícone</string>
     <string name="label_size">Tamanhos</string>
+    <string name="defaultButton">Default</string>
+    <string name="neutral">Neutral</string>
+    <string name="confirm">Confirm</string>
+    <string name="primary">Primary</string>
+    <string name="delete">Delete</string>
+    <string name="disabled">Disabled</string>
+    <string name="outline">Outline</string>
+    <string name="confirm_outline">Confirm Outline</string>
+    <string name="primary_outline">Primary Outline</string>
+    <string name="delete_outline">Delete Outline</string>
+    <string name="text">Text</string>
+    <string name="confirm_text">Confirm Text</string>
+    <string name="primary_text">Primary Text</string>
+    <string name="delete_text">Delete Text</string>
+    <string name="none">None</string>
+    <string name="round">Round</string>
 </resources>

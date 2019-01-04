@@ -26,33 +26,42 @@ class CurrencyTextWatcherTest {
     @Before
     fun setup() {
         editText = EditText(RuntimeEnvironment.application)
-        textWatcher = CurrencyTextWatcher(editText)
+        textWatcher = CurrencyTextWatcher(editText, Locale("pt", "BR"))
     }
 
     @Test
-    fun testLocaleBrazilCurrencyFormat() {
-        val textWatcher = CurrencyTextWatcher(editText, Locale("pt", "BR"))
+    fun testDefaultLocale() {
+        val textWatcher = CurrencyTextWatcher(editText)
         textWatcher.afterTextChanged(SpannableStringBuilder("100"))
-        assertEquals("R$ 1,00", editText.text.toString())
+        assertEquals('0', editText.text.last())
     }
 
     @Test
-    fun testLocaleBrazilCurrencyInvalidFormat() {
-        val textWatcher = CurrencyTextWatcher(editText, Locale("pt", "BR"))
+    fun testDefaultLocaleInvalidFormat() {
+        val textWatcher = CurrencyTextWatcher(editText)
         textWatcher.afterTextChanged(SpannableStringBuilder(""))
-        assertEquals("R$ 0,00", editText.text.toString())
+        assertEquals('0', editText.text.last())
     }
 
     @Test
     fun testAfterTextChanged() {
+        textWatcher = CurrencyTextWatcher(editText, Locale("pt", "BR"))
         textWatcher.afterTextChanged(SpannableStringBuilder("1"))
-        assertEquals('1', editText.text.last())
+        assertEquals("R$ 0,01", editText.text.toString())
+    }
+
+    @Test
+    fun testAfterTextChangedWithInvalidNumber() {
+        textWatcher = CurrencyTextWatcher(editText, Locale("pt", "BR"))
+        textWatcher.afterTextChanged(SpannableStringBuilder("invalid"))
+        assertEquals("R$ 0,00", editText.text.toString())
     }
 
     @Test
     fun testAfterTextChangedWithMaximumLength() {
+        textWatcher = CurrencyTextWatcher(editText, Locale("pt", "BR"))
         textWatcher.afterTextChanged(SpannableStringBuilder("111111111111111111"))
-        assertEquals('1', editText.text.last())
+        assertEquals("R$ 111.111.111.111,11", editText.text.toString())
     }
 
     @Test

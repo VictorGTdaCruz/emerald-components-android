@@ -74,6 +74,17 @@ class EmeraldLabelTest {
         verify(sizeMock).setDimensions(label.emeraldLabelText)
     }
 
+    @Test
+    fun testSetCustomColor() {
+        val customColor = android.R.color.black
+        val stateMock = mock(LabelStateHandler::class.java)
+
+        label.setCustomColor(stateMock, customColor)
+
+        verify(stateMock).setProperties(label,
+                ContextCompat.getColor(RuntimeEnvironment.application, customColor))
+    }
+
     @Test(expected = Resources.NotFoundException::class)
     fun testSetPropertiesWithInvalidResource() {
         val typeMock = mock(EmeraldLabelType::class.java)

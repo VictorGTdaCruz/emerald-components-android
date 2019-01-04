@@ -11,6 +11,7 @@
     <dimen name="button_padding_default_sides">24sp</dimen>
     <dimen name="button_padding_type_text_top_bottom">8sp</dimen>
     <dimen name="button_padding_type_text_sides">8sp</dimen>
+    <dimen name="button_border_width">1dp</dimen>
 
     <dimen name="label_border_width">1dp</dimen>
 </resources>

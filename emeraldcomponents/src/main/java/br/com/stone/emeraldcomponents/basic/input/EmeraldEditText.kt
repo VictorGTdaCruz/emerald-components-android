@@ -2,6 +2,7 @@ package br.com.stone.emeraldcomponents.basic.input
 
 import android.content.Context
 import android.util.AttributeSet
+import android.widget.EditText
 import br.com.stone.emeraldcomponents.R
 import kotlinx.android.synthetic.main.widget_edittextview.view.*
 
@@ -22,9 +23,10 @@ class EmeraldEditText : EmeraldBaseEditText {
     }
 
     init {
-        addView(inflate(context, R.layout.widget_edittextview, null))
-        editText?.inputType = inputType
-        editText?.setText(textAttribute)
+        val editText = inflate(context, R.layout.widget_edittextview, null) as EditText
+        editText.inputType = inputType
+        editText.setText(textAttribute)
+        addView(editText)
     }
 
     fun setMaskType(type: EmeraldMaskedEditText.MaskTypes) {

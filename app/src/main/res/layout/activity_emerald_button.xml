@@ -1,76 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.ButtonActivity">
 
-    <br.com.stone.emeraldcomponents.basic.EmeraldButton
-        android:id="@+id/emeraldButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Neutral"
-        app:emeraldButtonType="neutral"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <br.com.stone.emeraldcomponents.basic.EmeraldButton
-        android:id="@+id/emeraldButton2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Confirm"
-        app:emeraldButtonType="confirm"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emeraldButton" />
+        <TextView
+            android:id="@+id/defaultTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/defaultButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <br.com.stone.emeraldcomponents.basic.EmeraldButton
-        android:id="@+id/emeraldButton4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Delete"
-        app:emeraldButtonType="delete"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emeraldButton3" />
+        <br.com.stone.emeraldcomponents.basic.EmeraldButton
+            android:id="@+id/emeraldButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/neutral"
+            app:emeraldButtonType="neutral"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/defaultTextView" />
 
-    <br.com.stone.emeraldcomponents.basic.EmeraldButton
-        android:id="@+id/emeraldButton5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Disabled"
-        app:emeraldButtonType="disabled"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emeraldButton4" />
+        <br.com.stone.emeraldcomponents.basic.EmeraldButton
+            android:id="@+id/emeraldButton2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/confirm"
+            app:emeraldButtonType="confirm"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emeraldButton" />
 
-    <br.com.stone.emeraldcomponents.basic.EmeraldButton
-        android:id="@+id/emeraldButton3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Primary"
-        app:emeraldButtonType="primary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emeraldButton2" />
+        <br.com.stone.emeraldcomponents.basic.EmeraldButton
+            android:id="@+id/emeraldButton3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/primary"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emeraldButton2" />
 
-</android.support.constraint.ConstraintLayout>
+        <br.com.stone.emeraldcomponents.basic.EmeraldButton
+            android:id="@+id/emeraldButton4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/delete"
+            app:emeraldButtonType="delete"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emeraldButton3" />
+
+        <br.com.stone.emeraldcomponents.basic.EmeraldButton
+            android:id="@+id/emeraldButton5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/disabled"
+            app:emeraldButtonType="disabled"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emeraldButton4" />
+
+        <br.com.stone.emeraldcomponents.basic.EmeraldButton
+            android:id="@+id/emeraldButton6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/round"
+            app:emeraldButtonRadius="32"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emeraldButton5" />
+
+
+        <TextView
+            android:id="@+id/outlineTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/outline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emeraldButton6" />
+
+        <br.com.stone.emeraldcomponents.basic.EmeraldButton
+            android:id="@+id/emeraldButtonOutline1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/confirm_outline"
+            app:emeraldButtonStyle="outline"
+            app:emeraldButtonType="confirm"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/outlineTextView" />
+
+        <br.com.stone.emeraldcomponents.basic.EmeraldButton
+            android:id="@+id/emeraldButtonOutline2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/primary_outline"
+            app:emeraldButtonStyle="outline"
+            app:emeraldButtonType="primary"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emeraldButtonOutline1" />
+
+        <br.com.stone.emeraldcomponents.basic.EmeraldButton
+            android:id="@+id/emeraldButtonOutline3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/delete_outline"
+            app:emeraldButtonStyle="outline"
+            app:emeraldButtonType="delete"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emeraldButtonOutline2" />
+
+
+        <br.com.stone.emeraldcomponents.basic.EmeraldButton
+            android:id="@+id/emeraldButtonOutline4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/round"
+            app:emeraldButtonRadius="32"
+            app:emeraldButtonStyle="outline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emeraldButtonOutline3" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emeraldButtonOutline4" />
+
+        <br.com.stone.emeraldcomponents.basic.EmeraldButton
+            android:id="@+id/emeraldButtonText1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/confirm_text"
+            app:emeraldButtonStyle="text"
+            app:emeraldButtonType="confirm"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <br.com.stone.emeraldcomponents.basic.EmeraldButton
+            android:id="@+id/emeraldButtonText2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/primary_text"
+            app:emeraldButtonStyle="text"
+            app:emeraldButtonType="primary"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emeraldButtonText1" />
+
+        <br.com.stone.emeraldcomponents.basic.EmeraldButton
+            android:id="@+id/emeraldButtonText3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/delete_text"
+            app:emeraldButtonStyle="text"
+            app:emeraldButtonType="delete"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emeraldButtonText2" />
+
+        <TextView
+            android:id="@+id/none"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emeraldButtonText3" />
+
+        <br.com.stone.emeraldcomponents.basic.EmeraldButton
+            android:id="@+id/emeraldButtonNone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/none"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/none" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

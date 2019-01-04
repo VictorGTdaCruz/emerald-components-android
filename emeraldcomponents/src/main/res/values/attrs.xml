@@ -60,9 +60,11 @@
     <declare-styleable name="EmeraldButton">
         <attr name="emeraldButtonType" />
         <attr name="emeraldButtonStyle" />
-        <attr name="state_outline" format="boolean" />
-        <attr name="state_text" format="boolean" />
+        <attr name="emeraldButtonRadius" format="float" />
     </declare-styleable>
+
+    <attr name="state_outline" format="boolean" />
+    <attr name="state_text" format="boolean" />
 
     <!--Edit Text-->
     <declare-styleable name="EmeraldBaseEditText">

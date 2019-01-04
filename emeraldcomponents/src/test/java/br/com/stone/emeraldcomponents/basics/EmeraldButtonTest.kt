@@ -1,10 +1,11 @@
 package br.com.stone.emeraldcomponents.basics
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.StateListDrawable
 import br.com.stone.emeraldcomponents.R
 import br.com.stone.emeraldcomponents.basic.EmeraldButton
+import br.com.stone.emeraldcomponents.extension.colorRes
 import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -40,6 +41,7 @@ class EmeraldButtonTest {
         val attrs = Robolectric.buildAttributeSet()
                 .addAttribute(R.attr.emeraldButtonStyle, EmeraldButton.ButtonStyle.FILLED.ordinal.toString())
                 .addAttribute(R.attr.emeraldButtonType, EmeraldButton.ButtonType.CONFIRM.ordinal.toString())
+                .addAttribute(R.attr.emeraldButtonRadius, "10")
                 .build()
 
         val view = EmeraldButton(RuntimeEnvironment.application, attrs)
@@ -64,70 +66,35 @@ class EmeraldButtonTest {
     }
 
     @Test
-    fun testSetType() {
-        val type = EmeraldButton.ButtonType.PRIMARY
-        button.setButtonType(type)
-        Assert.assertEquals(type, button.type)
+    fun testTypePrimary() {
+        button.type = EmeraldButton.ButtonType.PRIMARY
+        assertEquals(button.currentTextColor, button.context.colorRes(android.R.color.white))
+        assertEquals((button.background as StateListDrawable).state.size, 4)
     }
 
     @Test
-    fun testButtonTextColorByTypeAndStyle() {
-        EmeraldButton.ButtonType.values().forEach { type ->
-            EmeraldButton.ButtonStyle.values().forEach { style ->
-                button.setButtonType(type)
-                button.setButtonStyle(style)
-                when (type) {
-                    EmeraldButton.ButtonType.PRIMARY -> {
-                        if (style == EmeraldButton.ButtonStyle.FILLED) {
-                            Assert.assertEquals(button.textColors.defaultColor, Color.WHITE)
-                        } else {
-                            Assert.assertEquals(button.textColors.defaultColor,
-                                    RuntimeEnvironment.application.getColor(R.color.emerald_button_primary))
-                        }
-                    }
-                    EmeraldButton.ButtonType.CONFIRM -> {
-                        if (style == EmeraldButton.ButtonStyle.FILLED) {
-                            Assert.assertEquals(button.textColors.defaultColor, Color.WHITE)
-                        } else {
-                            Assert.assertEquals(button.textColors.defaultColor,
-                                    RuntimeEnvironment.application.getColor(R.color.emerald_button_confirm))
-                        }
-                    }
-                    EmeraldButton.ButtonType.DELETE -> {
-                        if (style == EmeraldButton.ButtonStyle.FILLED) {
-                            Assert.assertEquals(button.textColors.defaultColor, Color.WHITE)
-                        } else {
-                            Assert.assertEquals(button.textColors.defaultColor,
-                                    RuntimeEnvironment.application.getColor(R.color.emerald_button_delete))
-                        }
-                    }
-                    EmeraldButton.ButtonType.NEUTRAL -> Assert.assertEquals(button.textColors.defaultColor,
-                            RuntimeEnvironment.application.getColor(R.color.emerald_button_neutral_text))
-                    EmeraldButton.ButtonType.DISABLED -> Assert.assertEquals(button.textColors.defaultColor,
-                            RuntimeEnvironment.application.getColor(R.color.emerald_button_disabled_text_and_icon))
-                }
-            }
-        }
+    fun testStyleFilled() {
+        button.style = EmeraldButton.ButtonStyle.FILLED
+        assertEquals(button.currentTextColor, button.context.colorRes(android.R.color.white))
     }
 
     @Test
-    fun testButtonColorByType() {
-        var type: EmeraldButton.ButtonType
-        for (int in 1 until EmeraldButton.ButtonType.values().size) {
-            type = EmeraldButton.ButtonType.values()[int]
-            button.setButtonType(type)
-            when (type) {
-                EmeraldButton.ButtonType.PRIMARY -> Assert.assertEquals(button.background,
-                        RuntimeEnvironment.application.getDrawable(R.drawable.button_primary))
-                EmeraldButton.ButtonType.CONFIRM -> Assert.assertEquals(button.background,
-                        RuntimeEnvironment.application.getDrawable(R.drawable.button_confirm))
-                EmeraldButton.ButtonType.DELETE -> Assert.assertEquals(button.background,
-                        RuntimeEnvironment.application.getDrawable(R.drawable.button_delete))
-                EmeraldButton.ButtonType.NEUTRAL -> Assert.assertEquals(button.background,
-                        RuntimeEnvironment.application.getDrawable(R.drawable.button_neutral))
-                EmeraldButton.ButtonType.DISABLED -> Assert.assertEquals(button.background as ColorDrawable,
-                        ColorDrawable(RuntimeEnvironment.application.getColor(R.color.emerald_button_disabled)))
-            }
-        }
+    fun testStyleOutline() {
+        button.style = EmeraldButton.ButtonStyle.OUTLINE
+        assertEquals(button.currentTextColor, button.context.colorRes(R.color.emerald_button_primary))
+    }
+
+    @Test
+    fun testStyleText() {
+        button.style = EmeraldButton.ButtonStyle.TEXT
+        assertEquals(button.currentTextColor, button.context.colorRes(R.color.emerald_button_primary))
+    }
+
+    @Test
+    fun testSetStyleProperties() {
+        val textColor = R.color.emerald_white_1
+        button.setStyleProperties(R.color.emerald_black_1, textColor)
+        assertEquals(button.currentTextColor, button.context.colorRes(textColor))
+        assertEquals((button.background as StateListDrawable).state.size, 4)
     }
 }

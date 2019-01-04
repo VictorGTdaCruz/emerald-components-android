@@ -16,7 +16,7 @@ class CurrencyTextWatcher(val editText: EditText,
                           private val valueListener: (unmaskedText: String) -> Unit = {}) : TextWatcher {
 
     private val numberFormat = NumberFormat.getCurrencyInstance(locale)
-    private val replaceable = "[${numberFormat.currency.symbol},.]"
+    private val replaceable = "\\D"
 
     override fun afterTextChanged(text: Editable?) {
         editText.removeTextChangedListener(this)

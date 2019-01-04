@@ -1,5 +1,6 @@
 package br.com.stone.emeraldcomponentsandroid.activities
 
+import android.content.pm.ActivityInfo
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.clearText
 import android.support.test.espresso.action.ViewActions.click
@@ -30,7 +31,7 @@ import java.util.Locale
  * Copyright (c) Stone Co. All rights reserved.
  * lucas.amaral@stone.com.br
  */
-class InputActivityTest: BaseScreenshotTest() {
+class InputActivityTest : BaseScreenshotTest() {
 
     override val activity: AppCompatActivity
         get() = activityRule.activity
@@ -172,5 +173,15 @@ class InputActivityTest: BaseScreenshotTest() {
                 .check(matches(withText("21000-000")))
 
         screenShot("cep-edittext")
+    }
+
+
+    @Test
+    fun shouldPasswordEditNotCrashWhenToggleIsClickedAndOrientationChanges(){
+        onView(withId((R.id.text_input_password_toggle)))
+                .perform(click())
+
+        activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 }

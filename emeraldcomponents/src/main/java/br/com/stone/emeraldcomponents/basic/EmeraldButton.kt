@@ -3,8 +3,10 @@ package br.com.stone.emeraldcomponents.basic
 import android.content.Context
 import android.support.v7.widget.AppCompatButton
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.View
 import br.com.stone.emeraldcomponents.R
+import br.com.stone.emeraldcomponents.basic.button.ButtonStateHelper
 import br.com.stone.emeraldcomponents.extension.colorRes
 import br.com.stone.emeraldcomponents.extension.dimen
 
@@ -16,69 +18,49 @@ import br.com.stone.emeraldcomponents.extension.dimen
  */
 class EmeraldButton : AppCompatButton {
 
+    private var color: Int = R.color.emerald_button_primary
+
     var type: ButtonType = ButtonType.PRIMARY
-        private set(buttonType) {
-            field = buttonType
+        set(newButtonType) {
+            field = newButtonType
             isClickable = true
-            when (buttonType) {
+            when (newButtonType) {
                 ButtonType.PRIMARY -> {
                     color = R.color.emerald_button_primary
-                    drawable = R.drawable.button_primary
-                    setStyleProperties(drawable, android.R.color.white)
+                    setStyleProperties(color, android.R.color.white)
                 }
                 ButtonType.CONFIRM -> {
                     color = R.color.emerald_button_confirm
-                    drawable = R.drawable.button_confirm
-                    setStyleProperties(drawable, android.R.color.white)
+                    setStyleProperties(color, android.R.color.white)
                 }
                 ButtonType.DELETE -> {
                     color = R.color.emerald_button_delete
-                    drawable = R.drawable.button_delete
-                    setStyleProperties(drawable, android.R.color.white)
+                    setStyleProperties(color, android.R.color.white)
                 }
                 ButtonType.NEUTRAL -> {
-                    setStyleProperties(R.drawable.button_neutral, R.color.emerald_button_neutral_text)
+                    setStyleProperties(android.R.color.white, R.color.emerald_button_neutral_text)
                 }
                 ButtonType.DISABLED -> {
                     setStyleProperties(R.color.emerald_button_disabled, R.color.emerald_button_disabled_text_and_icon)
                     isClickable = false
                 }
             }
-            setButtonStyle(style)
         }
 
-    var style: ButtonStyle = ButtonStyle.FILLED
-        private set(buttonStyle) {
-            field = buttonStyle
+    var style: ButtonStyle? = ButtonStyle.FILLED
+        set(newButtonStyle) {
+            field = newButtonStyle
             if (type != ButtonType.NEUTRAL && type != ButtonType.DISABLED) {
-                when (buttonStyle) {
-                    ButtonStyle.FILLED -> {
-                        isStateOutline = false
-                        isStateText = false
-                        setStyleProperties(drawable, android.R.color.white)
-                    }
-                    ButtonStyle.OUTLINE -> {
-                        isStateOutline = true
-                        isStateText = false
-                        setTextColor(context.colorRes(color))
-                    }
-                    ButtonStyle.TEXT -> {
-                        isStateOutline = false
-                        isStateText = true
-                        setTextColor(context.colorRes(color))
-                    }
+                if (newButtonStyle == ButtonStyle.FILLED) {
+                    setTextColor(context.colorRes(android.R.color.white))
+                }
+                if (newButtonStyle == ButtonStyle.OUTLINE || newButtonStyle == ButtonStyle.TEXT) {
+                    setTextColor(context.colorRes(color))
                 }
             }
         }
 
-    private var color: Int = R.color.emerald_button_primary
-    private var drawable: Int = R.drawable.button_primary
-
-    private var isStateOutline = false
-    private var isStateText = false
-
-    private val stateOutline = arrayOf(R.attr.state_outline)
-    private val stateText = arrayOf(R.attr.state_text)
+    private var radius = 0f
 
     enum class ButtonType {
         PRIMARY,
@@ -94,9 +76,9 @@ class EmeraldButton : AppCompatButton {
         TEXT
     }
 
-    constructor(context: Context): super(context)
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context, attrs: AttributeSet): super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         setAttributes(attrs)
     }
 
@@ -108,6 +90,7 @@ class EmeraldButton : AppCompatButton {
     private fun setAttributes(attributeSet: AttributeSet) {
         val args = context.theme.obtainStyledAttributes(attributeSet, R.styleable.EmeraldButton, 0, 0)
 
+        radius = args.getFloat(R.styleable.EmeraldButton_emeraldButtonRadius, 0f)
         type = EmeraldButton.ButtonType.values()[
                 args.getInt(R.styleable.EmeraldButton_emeraldButtonType, EmeraldButton.ButtonType.PRIMARY.ordinal)]
         style = EmeraldButton.ButtonStyle.values()[
@@ -116,18 +99,17 @@ class EmeraldButton : AppCompatButton {
         args.recycle()
     }
 
-    fun setButtonType(buttonType: ButtonType) {
-        type = buttonType
-    }
-
-    fun setButtonStyle(buttonStyle: ButtonStyle) {
-        style = buttonStyle
-    }
-
     override fun onCreateDrawableState(extraSpace: Int): IntArray {
+        val stateOutline = intArrayOf(R.attr.state_outline)
+        val stateText = intArrayOf(R.attr.state_text)
+
         val drawableState = super.onCreateDrawableState(extraSpace + 2)
-        if (isStateOutline) View.mergeDrawableStates(drawableState, stateOutline.toIntArray())
-        if (isStateText) View.mergeDrawableStates(drawableState, stateText.toIntArray())
+
+        var selectedStates: IntArray = intArrayOf()
+        if (style == ButtonStyle.OUTLINE) selectedStates = stateOutline
+        else if (style == ButtonStyle.TEXT) selectedStates = stateText
+
+        View.mergeDrawableStates(drawableState, selectedStates)
         return drawableState
     }
 
@@ -137,8 +119,9 @@ class EmeraldButton : AppCompatButton {
         setPadding(sides, topBottom, sides, topBottom)
     }
 
-    private fun setStyleProperties(backgroundColorResId: Int, textColorResId: Int) {
-        setBackgroundResource(backgroundColorResId)
-        setTextColor(context.colorRes(textColorResId))
+    fun setStyleProperties(backgroundColorRes: Int, textColorRes: Int, radius: Float = this.radius) {
+        val dpRadiusValue = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, radius, resources.displayMetrics)
+        background = ButtonStateHelper(context).getBackgroundDrawable(backgroundColorRes, dpRadiusValue)
+        setTextColor(context.colorRes(textColorRes))
     }
 }
